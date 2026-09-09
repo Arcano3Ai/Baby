@@ -1,0 +1,882 @@
+/* ==========================================================================
+   COMPONENTS — Gender Reveal Invitation
+   All sections: Flyer Card, Countdown, Actions, Voting, Ticket, Map, RSVP
+   ========================================================================== */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   1. INVITATION FLYER CARD
+   ────────────────────────────────────────────────────────────────────────── */
+.flyer-invitation-card {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto 2.5rem auto;
+  background: #ffffff;
+  border-radius: var(--r-xl);
+  border: 2px solid rgba(212,175,55,0.30);
+  box-shadow: var(--shadow-lg), 0 0 0 6px rgba(212,175,55,0.08);
+  padding: 2.5rem 2rem 2rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* subtle inner pattern */
+.flyer-invitation-card::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1.5px dashed rgba(212,175,55,0.35);
+  border-radius: calc(var(--r-xl) - 6px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* golden shimmer sweep */
+.flyer-invitation-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.55) 50%, transparent 65%);
+  background-size: 200% 100%;
+  animation: shimmerCard 6s infinite linear;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: var(--r-xl);
+}
+
+@keyframes shimmerCard {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Stars decoration — symmetric pairs */
+.card-stars-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.c-star {
+  position: absolute;
+  font-size: 1.15rem;
+  opacity: 0.7;
+  animation: twinkle 3s infinite ease-in-out alternate;
+}
+
+@keyframes twinkle {
+  0%   { transform: scale(0.85) rotate(-5deg);  opacity: 0.45; }
+  100% { transform: scale(1.15) rotate(10deg); opacity: 0.85; }
+}
+
+/* ── Baby (centered) ── */
+.flyer-baby-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 1.2rem auto;
+}
+
+.flyer-baby-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 28px rgba(212,175,55,0.30);
+}
+
+/* ── Badge ── */
+.flyer-badge-top {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  background: var(--gold-light);
+  border: 1px solid var(--gold);
+  color: var(--gold-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  padding: 0.3rem 1.2rem;
+  border-radius: var(--r-full);
+  margin-bottom: 0.9rem;
+}
+
+/* ── Title ── */
+.flyer-title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.f-girl { color: var(--girl-pink-dark); text-shadow: 0 3px 10px var(--girl-glow); letter-spacing: 2px; }
+.f-or   { font-family: var(--font-cursive); font-size: 2.6rem; color: #888; font-weight: 400; }
+.f-boy  { color: var(--boy-blue-dark);  text-shadow: 0 3px 10px var(--boy-glow);  letter-spacing: 2px; }
+
+/* ── Subtitle ── */
+.flyer-subtitle {
+  position: relative;
+  z-index: 2;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 1.4rem;
+}
+
+/* ── Pills row (symmetric equal-width) ── */
+.flyer-pills-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.f-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 200px;
+  height: 48px;
+  padding: 0 1.4rem;
+  border-radius: var(--r-full);
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.f-pill-pink { background: var(--girl-pink-light); color: var(--girl-pink-dark); border: 2px dashed var(--girl-pink); }
+.f-pill-blue { background: var(--boy-blue-light);  color: var(--boy-blue-dark);  border: 2px dashed var(--boy-blue);  }
+
+/* ── Venue ── */
+.flyer-venue-text {
+  position: relative;
+  z-index: 2;
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.flyer-venue-name { font-weight: 800; color: var(--gold-dark); }
+
+.flyer-no-faltes {
+  position: relative;
+  z-index: 2;
+  display: block;
+  font-family: var(--font-cursive);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Bottom grid (Bears / Bottles) — perfectly symmetric ── */
+.flyer-bottom-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr;
+  gap: 1rem;
+  align-items: end;
+  border-top: 1.5px dashed rgba(212,175,55,0.30);
+  padding-top: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.flyer-col-girl,
+.flyer-col-boy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.flyer-col-center {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.flyer-teddy-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--t-bounce);
+}
+
+.flyer-teddy-img:hover { transform: scale(1.07) rotate(2deg); }
+
+.flyer-bottles-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: var(--shadow-md);
+  animation: floatBottles 4s infinite ease-in-out alternate;
+}
+
+@keyframes floatBottles {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.flyer-gift-icon-img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  border: 2px solid #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.flyer-gift-caption {
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.35;
+  max-width: 200px;
+}
+
+.flyer-gift-label-pink { font-size: 0.82rem; font-weight: 700; color: var(--girl-pink-dark); }
+.flyer-gift-label-blue { font-size: 0.82rem; font-weight: 700; color: var(--boy-blue-dark); }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   2. COUNTDOWN TIMER
+   ────────────────────────────────────────────────────────────────────────── */
+.countdown-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+  max-width: 520px;
+  margin: 0 auto 2rem auto;
+  width: 100%;
+}
+
+.countdown-box {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 1.2rem 0.5rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--girl-pink), var(--boy-blue));
+}
+
+.countdown-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.countdown-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3. QUICK ACTION DOCK
+   ────────────────────────────────────────────────────────────────────────── */
+.quick-action-dock {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 auto 1.5rem auto;
+  max-width: 720px;
+}
+
+.btn-dock-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.4rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--t-bounce);
+}
+
+.btn-dock-action .dock-icon {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.btn-dock-action:hover { transform: translateY(-3px) scale(1.03); box-shadow: var(--shadow-md); }
+.btn-dock-action:hover .dock-icon { transform: scale(1.25) rotate(8deg); }
+
+.btn-dock-calendar { border-color: var(--gold);       color: var(--gold-dark);   }
+.btn-dock-calendar:hover { background: var(--gold);       color: #fff; border-color: var(--gold); }
+
+.btn-dock-map      { border-color: var(--boy-blue);   color: var(--boy-blue-dark); }
+.btn-dock-map:hover { background: var(--boy-blue);     color: #fff; border-color: var(--boy-blue); }
+
+.btn-dock-rsvp     { border-color: var(--girl-pink);  color: var(--girl-pink-dark); }
+.btn-dock-rsvp:hover { background: var(--girl-pink);  color: #fff; border-color: var(--girl-pink); }
+
+.btn-dock-share    { border-color: #ccc; color: #555; }
+.btn-dock-share:hover { background: #2c3e50; color: #fff; border-color: #2c3e50; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   4. VOTING SYSTEM
+   ────────────────────────────────────────────────────────────────────────── */
+.voting-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.vote-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all var(--t-bounce);
+}
+
+.vote-card-girl:hover,
+.vote-card-girl.selected {
+  border-color: var(--girl-pink);
+  box-shadow: 0 12px 28px var(--girl-glow);
+  background: #fff5f8;
+}
+
+.vote-card-boy:hover,
+.vote-card-boy.selected {
+  border-color: var(--boy-blue);
+  box-shadow: 0 12px 28px var(--boy-glow);
+  background: #f0f8ff;
+}
+
+.vote-avatar {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 1rem auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.vote-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vote-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.vote-card-girl .vote-title { color: var(--girl-pink-dark); }
+.vote-card-boy  .vote-title { color: var(--boy-blue-dark);  }
+
+.vote-gift-info {
+  font-size: 0.87rem;
+  color: var(--text-muted);
+  background: rgba(0,0,0,0.03);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--r-md);
+  border: 1px dashed #ddd;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.btn-vote {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: var(--r-full);
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.btn-vote-girl { background: var(--girl-pink); color: #fff; }
+.btn-vote-girl:hover { background: var(--girl-pink-dark); }
+.btn-vote-boy  { background: var(--boy-blue);  color: #fff; }
+.btn-vote-boy:hover  { background: var(--boy-blue-dark); }
+
+/* Poll Bar */
+.poll-meter-container {
+  margin-top: 2rem;
+  background: #f9f9f9;
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+  border-radius: var(--r-md);
+}
+
+.poll-labels {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.poll-bar-wrapper {
+  height: 20px;
+  background: #ebebeb;
+  border-radius: var(--r-full);
+  overflow: hidden;
+  display: flex;
+}
+
+.poll-bar-girl {
+  height: 100%;
+  background: linear-gradient(90deg, #f48fb1, #e91e7a);
+  transition: width 0.7s ease;
+  display: flex; align-items: center; padding-right: 6px;
+  justify-content: flex-end;
+  color: #fff; font-size: 0.72rem; font-weight: 700;
+}
+
+.poll-bar-boy {
+  height: 100%;
+  background: linear-gradient(90deg, #64b5f6, #1976d2);
+  transition: width 0.7s ease;
+  display: flex; align-items: center; padding-left: 6px;
+  color: #fff; font-size: 0.72rem; font-weight: 700;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   5. TIMELINE
+   ────────────────────────────────────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  max-width: 580px;
+  margin: 2rem auto 0 auto;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--girl-pink), var(--gold), var(--boy-blue));
+  border-radius: 2px;
+}
+
+.timeline-item { position: relative; margin-bottom: 1.75rem; }
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.20);
+}
+
+.timeline-content {
+  background: #fafafa;
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+  border-radius: var(--r-md);
+}
+
+.timeline-time  { font-weight: 700; color: var(--gold-dark); font-size: 0.9rem; }
+.timeline-title { font-size: 1.1rem; color: var(--text); margin-top: 0.15rem; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   6. MAP & LOCATION
+   ────────────────────────────────────────────────────────────────────────── */
+.location-card { text-align: center; }
+.venue-name    { font-size: 1.65rem; font-family: var(--font-display); color: var(--gold-dark); margin-bottom: 0.3rem; }
+.venue-address { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+#leaflet-map {
+  width: 100%;
+  height: 360px;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+  z-index: 10;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--r-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-bounce), filter var(--t-fast);
+}
+
+.btn-nav:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.btn-gmaps { background: #4285F4; }
+.btn-waze  { background: #33CCFF; color: #003366; }
+.btn-apple { background: #111111; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   7. RSVP FORM
+   ────────────────────────────────────────────────────────────────────────── */
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.form-group  { display: flex; flex-direction: column; gap: 0.35rem; text-align: left; }
+.form-label  { font-weight: 600; font-size: 0.9rem; }
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: var(--r-md);
+  border: 1.5px solid #e2e8f0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+.btn-submit-whatsapp {
+  background: #25D366;
+  color: #fff;
+  border: none;
+  padding: 0.95rem 1.8rem;
+  border-radius: var(--r-full);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  box-shadow: 0 8px 20px rgba(37,211,102,0.30);
+  transition: transform var(--t-bounce), background var(--t-fast);
+}
+
+.btn-submit-whatsapp:hover { background: #1ca452; transform: translateY(-2px) scale(1.02); }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   8. QUIZ
+   ────────────────────────────────────────────────────────────────────────── */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-result-card {
+  display: none;
+  background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+  border: 2px solid var(--gold);
+  border-radius: var(--r-md);
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  animation: fadeUp 0.4s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Generic action button (shared) */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--r-full);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--t-bounce);
+}
+
+.btn-action-gold {
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 6px 18px var(--gold-glow);
+}
+
+.btn-action-gold:hover { filter: brightness(1.08); transform: translateY(-2px); }
+
+.btn-action-pink {
+  background: var(--girl-pink);
+  color: #fff;
+  box-shadow: 0 6px 18px var(--girl-glow);
+}
+
+.btn-action-pink:hover { background: var(--girl-pink-dark); transform: translateY(-2px); }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   9. GUESTBOOK
+   ────────────────────────────────────────────────────────────────────────── */
+.guestbook-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.guestbook-post-card {
+  background: #fff;
+  border-radius: var(--r-md);
+  padding: 1.1rem;
+  border-left: 5px solid var(--gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.guestbook-post-card.post-pink { border-left-color: var(--girl-pink); background: #fff8f9; }
+.guestbook-post-card.post-blue { border-left-color: var(--boy-blue);  background: #f5f9ff; }
+
+.post-header   { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+.post-author   { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.post-date     { font-size: 0.72rem; color: var(--text-muted); }
+
+.post-badge    { font-size: 0.72rem; padding: 0.18rem 0.55rem; border-radius: var(--r-full); font-weight: 700; margin-left: 0.4rem; }
+.badge-pink    { background: var(--girl-pink-light); color: var(--girl-pink-dark); }
+.badge-blue    { background: var(--boy-blue-light);  color: var(--boy-blue-dark); }
+
+.post-body  { font-size: 0.9rem; color: #555; font-style: italic; line-height: 1.5; margin-bottom: 0.75rem; }
+.post-footer{ display: flex; justify-content: flex-end; }
+
+.btn-like {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--r-full);
+  padding: 0.28rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: transform var(--t-bounce), background var(--t-fast);
+  display: inline-flex; align-items: center; gap: 0.25rem;
+}
+
+.btn-like:hover { transform: scale(1.1); background: #ffe0e6; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   10. VIP TICKET GENERATOR
+   ────────────────────────────────────────────────────────────────────────── */
+.ticket-wrapper { margin-top: 2rem; }
+
+.vip-ticket {
+  position: relative;
+  background: linear-gradient(135deg, #fff 0%, #fffde7 100%);
+  border: 2px solid var(--gold);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.6rem;
+  overflow: hidden;
+}
+
+.vip-ticket::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.70), transparent);
+  transform: skewX(-20deg);
+  animation: ticketShine 5s infinite;
+}
+
+@keyframes ticketShine {
+  0%   { left: -100%; }
+  35%  { left: 130%; }
+  100% { left: 130%; }
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.9rem;
+  border-bottom: 2px dashed rgba(212,175,55,0.35);
+  margin-bottom: 1rem;
+}
+
+.ticket-badge {
+  background: linear-gradient(90deg, var(--gold), #f3e5ab);
+  color: #5c3d00;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--r-full);
+}
+
+.ticket-id {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.ticket-body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.ticket-guest-name {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+  word-break: break-word;
+}
+
+.ticket-team-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--r-full);
+  margin-bottom: 0.7rem;
+}
+
+.team-girl-badge { background: var(--girl-pink-light); color: var(--girl-pink-dark); border: 1px solid var(--girl-pink); }
+.team-boy-badge  { background: var(--boy-blue-light);  color: var(--boy-blue-dark);  border: 1px solid var(--boy-blue); }
+
+.ticket-event-details { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+.ticket-qr-container {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #fff; padding: 0.5rem;
+  border-radius: var(--r-md);
+  border: 1.5px solid rgba(212,175,55,0.35);
+}
+
+.ticket-qr { width: 82px; height: 82px; }
+.ticket-qr-label { font-size: 0.62rem; font-weight: 700; color: var(--gold-dark); margin-top: 0.25rem; letter-spacing: 1px; }
+
+.ticket-footer-strip {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 1rem; padding-top: 0.7rem;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  font-size: 0.78rem; color: var(--gold-dark); font-weight: 600;
+}
+
+.ticket-actions {
+  display: flex; gap: 0.75rem; margin-top: 1.25rem; justify-content: center;
+}
+
+/* Reveal Cannon */
+.simulator-box { text-align: center; padding: 1rem; }
+
+.cannon-btn-group {
+  display: flex; justify-content: center; gap: 1rem;
+  margin: 1.5rem 0; flex-wrap: wrap;
+}
+
+.btn-cannon {
+  padding: 0.95rem 2rem;
+  border-radius: var(--r-full);
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 0.55rem;
+  color: #fff;
+  transition: all var(--t-bounce);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-cannon-girl { background: linear-gradient(135deg, var(--girl-pink), #ec407a); }
+.btn-cannon-boy  { background: linear-gradient(135deg, var(--boy-blue),  #1976d2); }
+.btn-cannon:hover { transform: translateY(-3px) scale(1.04); filter: brightness(1.08); }
+
+.cannon-hint { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .flyer-title { font-size: 2.6rem; }
+  .flyer-bottom-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .flyer-col-center { order: 3; }
+  .voting-grid { grid-template-columns: 1fr; }
+  .countdown-container { grid-template-columns: repeat(2, 1fr); }
+  .navigation-buttons { flex-direction: column; align-items: center; }
+  .ticket-body { grid-template-columns: 1fr; text-align: center; }
+}

@@ -1,0 +1,186 @@
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section { padding: 4rem 0; }
+
+/* ==========================================================================
+   BACKGROUND DECORATION
+   ========================================================================== */
+.bg-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-star {
+  position: absolute;
+  opacity: 0.55;
+  animation: floatStar 6s infinite ease-in-out alternate;
+}
+
+.floating-cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.55);
+  border-radius: 50px;
+  filter: blur(10px);
+  animation: floatCloud 30s infinite linear;
+}
+
+@keyframes floatStar {
+  0%   { transform: translateY(0) rotate(0deg) scale(0.9); }
+  100% { transform: translateY(-18px) rotate(20deg) scale(1.1); }
+}
+
+@keyframes floatCloud {
+  0%   { transform: translateX(-200px); }
+  100% { transform: translateX(calc(100vw + 200px)); }
+}
+
+/* ==========================================================================
+   AUDIO CONTROL
+   ========================================================================== */
+.audio-control-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 90;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--gold);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--t-bounce), background var(--t-fast);
+}
+
+.audio-control-btn:hover { transform: scale(1.12); background: var(--gold-light); }
+.audio-control-btn svg  { width: 22px; height: 22px; fill: var(--gold-dark); }
+
+/* ==========================================================================
+   GLASS CARD  (shared utility)
+   ========================================================================== */
+.glass-card {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  transition: transform var(--t-normal), box-shadow var(--t-normal);
+}
+
+.glass-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ==========================================================================
+   SECTION HEADINGS
+   ========================================================================== */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(120deg, var(--girl-pink), var(--gold), var(--boy-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   HERO - minimal min-height so card breathes
+   ========================================================================== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+/* ==========================================================================
+   REOPEN ENVELOPE BTN
+   ========================================================================== */
+.btn-reopen-envelope {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 90;
+  background: var(--surface);
+  border: 1.5px solid var(--gold);
+  border-radius: var(--r-full);
+  padding: 0.4rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--t-bounce);
+}
+
+.btn-reopen-envelope:hover { background: var(--gold); color: #fff; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+.footer-heart { color: var(--girl-pink); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 600px) {
+  .glass-card { padding: 1.75rem 1.25rem; }
+  .section-title { font-size: 1.65rem; }
+}

@@ -1,0 +1,231 @@
+/* ==========================================================================
+   VIP TICKET PASS & REVEAL CANNON SIMULATOR STYLES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VIP DIGITAL PASS GENERATOR
+   -------------------------------------------------------------------------- */
+.ticket-generator-container {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.ticket-wrapper {
+  margin-top: 2rem;
+  perspective: 1000px;
+}
+
+.vip-ticket {
+  background: linear-gradient(135deg, #ffffff 0%, #fffcf5 50%, #fdf8eb 100%);
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 36px rgba(212, 175, 55, 0.25), 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.8rem;
+  transition: transform 0.4s ease;
+}
+
+.vip-ticket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  transform: skewX(-25deg);
+  animation: shineTicket 5s infinite;
+}
+
+@keyframes shineTicket {
+  0% { left: -150%; }
+  30% { left: 150%; }
+  100% { left: 150%; }
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed rgba(212, 175, 55, 0.4);
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.ticket-badge {
+  background: linear-gradient(90deg, #d4af37, #f3e5ab);
+  color: #5c3d2e;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-full);
+}
+
+.ticket-id {
+  font-family: monospace;
+  font-weight: bold;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.ticket-body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.ticket-guest-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+  word-break: break-word;
+}
+
+.ticket-team-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.8rem;
+}
+
+.team-girl-badge {
+  background: var(--girl-pink-light);
+  color: var(--girl-pink-primary);
+  border: 1px solid var(--girl-pink-primary);
+}
+
+.team-boy-badge {
+  background: var(--boy-blue-light);
+  color: var(--boy-blue-primary);
+  border: 1px solid var(--boy-blue-primary);
+}
+
+.ticket-event-details {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.ticket-qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 0.6rem;
+  border-radius: 12px;
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ticket-qr {
+  width: 90px;
+  height: 90px;
+}
+
+.ticket-qr-label {
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: var(--gold-dark);
+  margin-top: 0.3rem;
+  letter-spacing: 1px;
+}
+
+.ticket-footer-strip {
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   2. REVEAL CANNON SIMULATOR
+   -------------------------------------------------------------------------- */
+.simulator-box {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.cannon-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.btn-cannon {
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all var(--transition-bounce);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cannon-girl {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  box-shadow: 0 8px 25px var(--girl-pink-glow);
+}
+
+.btn-cannon-girl:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn-cannon-boy {
+  background: linear-gradient(135deg, #4a90e2 0%, #64b5f6 100%);
+  box-shadow: 0 8px 25px var(--boy-blue-glow);
+}
+
+.btn-cannon-boy:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.cannon-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 540px) {
+  .ticket-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .ticket-qr-container {
+    margin: 0 auto;
+  }
+  .ticket-header {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}

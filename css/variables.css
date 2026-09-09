@@ -1,0 +1,51 @@
+/* ==========================================================================
+   VARIABLES - Gender Reveal Design System
+   ========================================================================== */
+:root {
+  /* Girl (Pink) */
+  --girl-pink:       #f48fb1;
+  --girl-pink-light: #fce4ec;
+  --girl-pink-dark:  #c2185b;
+  --girl-glow:       rgba(244, 143, 177, 0.35);
+
+  /* Boy (Blue) */
+  --boy-blue:        #64b5f6;
+  --boy-blue-light:  #e3f2fd;
+  --boy-blue-dark:   #1565c0;
+  --boy-glow:        rgba(100, 181, 246, 0.35);
+
+  /* Gold */
+  --gold:            #d4af37;
+  --gold-light:      #fff8e1;
+  --gold-dark:       #8d6e0a;
+  --gold-glow:       rgba(212, 175, 55, 0.30);
+
+  /* Neutral */
+  --bg:              #fdf8f5;
+  --surface:         #ffffff;
+  --text:            #2d2d2d;
+  --text-muted:      #7a7a8a;
+  --border:          rgba(0,0,0,0.08);
+
+  /* Radii */
+  --r-sm:  8px;
+  --r-md:  16px;
+  --r-lg:  24px;
+  --r-xl:  36px;
+  --r-full:9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 48px rgba(0,0,0,0.10);
+
+  /* Typography */
+  --font-display: 'Fredoka', 'Quicksand', sans-serif;
+  --font-body:    'Outfit', 'Inter', sans-serif;
+  --font-cursive: 'Caveat', cursive;
+
+  /* Transitions */
+  --t-fast:   0.18s ease;
+  --t-normal: 0.32s ease;
+  --t-bounce: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
